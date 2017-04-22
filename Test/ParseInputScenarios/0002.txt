@@ -1,0 +1,18 @@
+-- given no header only with an mrequire import
+const NativeArray = mrequire("core:Data.Native.Array:1.0.0");
+
+
+-- doc
+{
+  "header": {
+    "content": []
+  },
+  "imports": {
+    "content": [
+      "core:Data.Native.Array:1.0.0"
+    ]
+  },
+  "functions": {
+    "content": []
+  }
+}
