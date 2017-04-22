@@ -1,0 +1,71 @@
+-- given a header, an mrequire import and a function with signature and assumptions including assumptionEqual
+//- Some or other text
+//- Some more text
+
+const Assert = require("assert");
+const NativeArray = mrequire("core:Data.Native.Array:1.0.0");
+
+
+//- The identity function
+//= identity :: a -> a
+const identity = x => x;
+assumption(identity(1) == 1);
+assumptionEqual(identity("Hello"), "Hello");
+
+
+//- The constant function
+//= constant :: a -> b -> a
+const constant = a => _ => a;
+-- doc
+{
+  "header": {
+    "content": [
+      "Some or other text",
+      "Some more text"
+    ]
+  },
+  "imports": {
+    "content": [
+      "core:Data.Native.Array:1.0.0"
+    ]
+  },
+  "functions": {
+    "content": [
+      {
+        "header": {
+          "content": [
+            "The identity function"
+          ]
+        },
+        "signature": {
+          "value": [
+            0,
+            "identity :: a -> a"
+          ]
+        },
+        "assumptions": {
+          "content": [
+            "identity(1) == 1",
+            "identity(\"Hello\") == \"Hello\""
+          ]
+        }
+      },
+      {
+        "header": {
+          "content": [
+            "The constant function"
+          ]
+        },
+        "signature": {
+          "value": [
+            0,
+            "constant :: a -> b -> a"
+          ]
+        },
+        "assumptions": {
+          "content": []
+        }
+      }
+    ]
+  }
+}

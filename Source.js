@@ -14,10 +14,33 @@ const mrequireMatch = NativeString.match(/mrequire\w*\(\w*["'](.*)["']\w*\)/);
 const singleLineAssumptionMatch = NativeString.match(/^[ \t]*assumption[ \t]*\((.*)\)[ \t]*;[ \t]*$/);
 
 
+const singleLineAssumptionEqualMatch = NativeString.match(/^[ \t]*assumptionEqual[ \t]*\((.*)\)[ \t]*;[ \t]*$/);
+
 
 function removeComment(s) {
     return NativeString.trim(NativeString.substringFrom(3)(s));
 }
+
+
+function replaceCommaWithEquals(s) {
+    let parenCount = 0;
+
+    for (let lp = 0; lp < NativeString.length(s); lp += 1) {
+        if (s[lp] === "(" || s[lp] === "[") {
+            parenCount += 1;
+        } else if (s[lp] === ")" || s[lp] === "]") {
+            parenCount -= 1;
+        } else if (s[lp] === "\\") {
+            lp += 1;
+        } else if (parenCount === 0 && s[lp] === ",") {
+            return NativeString.trim(NativeString.substring(0)(lp)(s)) + " == " + NativeString.trim(NativeString.substringFrom(lp + 1)(s));
+        }
+    }
+
+    return s;
+}
+assumptionEqual(replaceCommaWithEquals("1, 2"), "1 == 2");
+assumptionEqual(replaceCommaWithEquals("identity('Hello'), 'Hello'"), "identity('Hello') == 'Hello'");
 
 
 function parseSource(source) {
@@ -98,6 +121,9 @@ function parseSource(source) {
                 } else if (singleLineAssumptionMatch(line).isJust()) {
                     const assumptionMatch = singleLineAssumptionMatch(line);
                     currentFunctionAssumptions = currentFunctionAssumptions.append(assumptionMatch.reduce(() => "")(a => NativeArray.at(a)(1).reduce(() => "")(i => i)));
+                } else if (singleLineAssumptionEqualMatch(line).isJust()) {
+                    const assumptionMatch = singleLineAssumptionEqualMatch(line);
+                    currentFunctionAssumptions = currentFunctionAssumptions.append(replaceCommaWithEquals(assumptionMatch.reduce(() => "")(a => NativeArray.at(a)(1).reduce(() => "")(i => i))));
                 }
         }
     }
