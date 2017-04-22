@@ -6,7 +6,13 @@ const NativeString = require("./Data/Native/String");
 
 
 const newlineSplitter = NativeString.split(/\n/);
+
+
 const mrequireMatch = NativeString.match(/mrequire\w*\(\w*["'](.*)["']\w*\)/);
+
+
+const singleLineAssumptionMatch = NativeString.match(/^[ \t]*assumption[ \t]*\((.*)\)[ \t]*;[ \t]*$/);
+
 
 
 function removeComment(s) {
@@ -89,6 +95,9 @@ function parseSource(source) {
                         currentFunctionSignature = Maybe.Just(removeComment(line));
                         state = 4;
                     }
+                } else if (singleLineAssumptionMatch(line).isJust()) {
+                    const assumptionMatch = singleLineAssumptionMatch(line);
+                    currentFunctionAssumptions = currentFunctionAssumptions.append(assumptionMatch.reduce(() => "")(a => NativeArray.at(a)(1).reduce(() => "")(i => i)));
                 }
         }
     }
