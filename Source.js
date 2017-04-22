@@ -72,7 +72,7 @@ function parseSource(source) {
                 } else {
                     const match = mrequireMatch(line);
                     if (match.isJust()) {
-                        imports = imports.append(match.reduce(() => "")(a => NativeArray.at(a)(1).reduce(() => "")(i => i)));
+                        imports = imports.append(withDefault("")(NativeArray.at(withDefault([""])(match))(1)));
                     }
                     state = 2;
                 }
@@ -90,7 +90,7 @@ function parseSource(source) {
                 } else {
                     const match = mrequireMatch(line);
                     if (match.isJust()) {
-                        imports = imports.append(match.reduce(() => "")(a => NativeArray.at(a)(1).reduce(() => "")(i => i)));
+                        imports = imports.append(withDefault("")(NativeArray.at(withDefault([""])(match))(1)));
                     }
                     break;
                 }
@@ -126,10 +126,10 @@ function parseSource(source) {
                     }
                 } else if (singleLineAssumptionMatch(line).isJust()) {
                     const assumptionMatch = singleLineAssumptionMatch(line);
-                    currentFunctionAssumptions = currentFunctionAssumptions.append(assumptionMatch.reduce(() => "")(a => NativeArray.at(a)(1).reduce(() => "")(i => i)));
+                    currentFunctionAssumptions = currentFunctionAssumptions.append(withDefault("")(NativeArray.at(withDefault([""])(assumptionMatch))(1)));
                 } else if (singleLineAssumptionEqualMatch(line).isJust()) {
                     const assumptionMatch = singleLineAssumptionEqualMatch(line);
-                    currentFunctionAssumptions = currentFunctionAssumptions.append(replaceCommaWithEquals(assumptionMatch.reduce(() => "")(a => NativeArray.at(a)(1).reduce(() => "")(i => i))));
+                    currentFunctionAssumptions = currentFunctionAssumptions.append(replaceCommaWithEquals(withDefault("")(NativeArray.at(withDefault([""])(assumptionMatch))(1))));
                 }
         }
     }
