@@ -22,17 +22,23 @@ function removeComment(s) {
 }
 
 
+const withDefault = d => m =>
+    m.reduce(() => d)(a => a);
+
+
 function replaceCommaWithEquals(s) {
     let parenCount = 0;
 
     for (let lp = 0; lp < NativeString.length(s); lp += 1) {
-        if (s[lp] === "(" || s[lp] === "[") {
+        const ch = withDefault("")(NativeString.at(lp)(s));
+
+        if (ch === "(" || ch === "[") {
             parenCount += 1;
-        } else if (s[lp] === ")" || s[lp] === "]") {
+        } else if (ch === ")" || ch === "]") {
             parenCount -= 1;
-        } else if (s[lp] === "\\") {
+        } else if (ch === "\\") {
             lp += 1;
-        } else if (parenCount === 0 && s[lp] === ",") {
+        } else if (parenCount === 0 && ch === ",") {
             return NativeString.trim(NativeString.substring(0)(lp)(s)) + " == " + NativeString.trim(NativeString.substringFrom(lp + 1)(s));
         }
     }

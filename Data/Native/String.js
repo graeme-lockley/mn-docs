@@ -1,6 +1,13 @@
 const Maybe = mrequire("core:Data.Native.Maybe:1.0.0");
 
 
+//= at :: Int -> String -> String
+const at = i => s =>
+    i < s.length
+        ? Maybe.Just(s[i])
+        : Maybe.Nothing;
+
+
 //= length :: String -> Int
 const length = s =>
     s.length;
@@ -41,6 +48,7 @@ const trim = s =>
 
 
 module.exports = {
+    at,
     length,
     match,
     split,
