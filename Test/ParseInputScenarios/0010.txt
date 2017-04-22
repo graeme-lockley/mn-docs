@@ -1,0 +1,27 @@
+-- given a header, an mrequire import and a function without a signature or any assumptions
+//- Some or other text
+//- Some more text
+
+const Assert = require("assert");
+const NativeArray = mrequire("core:Data.Native.Array:1.0.0");
+
+
+//- A function without a signature
+const identity = x => x;
+-- doc
+{
+  "header": {
+    "content": [
+      "Some or other text",
+      "Some more text"
+    ]
+  },
+  "imports": {
+    "content": [
+      "core:Data.Native.Array:1.0.0"
+    ]
+  },
+  "functions": {
+    "content": []
+  }
+}
