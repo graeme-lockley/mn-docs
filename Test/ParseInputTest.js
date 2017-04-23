@@ -4,6 +4,7 @@ const Unit = mrequire("core:Test.Unit:v1.0.0");
 
 const Source = require("../Source");
 
+
 const suite = Unit.newSuite("Parse JavaScript Input Suite");
 
 
@@ -64,5 +65,4 @@ function forAllScenariosIn(location, assertions) {
                 .catch(err => console.error(`Failed: ${f}: ${err}`));
         }))
         .catch(console.error);
-
 }
