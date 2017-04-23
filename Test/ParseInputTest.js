@@ -1,5 +1,5 @@
 const Assert = require("assert");
-const FileSystem = require("../System/IO/Native/FileSystem");
+const FileSystem = mrequire("core:System.IO.Native.FileSystem:1.0.0");
 const Unit = mrequire("core:Test.Unit:v1.0.0");
 
 const Source = require("../Source");
