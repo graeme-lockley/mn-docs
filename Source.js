@@ -149,11 +149,6 @@ function parseSource(source) {
 }
 
 
-// FileSystem.readFile("./Source.js")
-//     .then(console.log)
-//     .catch(console.log);
-
-
 module.exports = {
     parseSource
 };
