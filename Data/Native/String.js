@@ -1,7 +1,7 @@
 const Maybe = mrequire("core:Data.Native.Maybe:1.0.0");
 
 
-//= at :: Int -> String -> String
+//= at :: Int -> String -> Maybe String
 const at = i => s =>
     i < s.length
         ? Maybe.Just(s[i])
