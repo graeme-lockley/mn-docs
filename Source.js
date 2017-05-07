@@ -1,8 +1,7 @@
-const Array = mrequire("core:Data.Array:v1.0.0");
-const FileSystem = require("./System/IO/Native/FileSystem");
-const Maybe = mrequire("core:Data.Maybe:v1.0.0");
-const NativeArray = mrequire("core:Data.Native.Array:1.0.0");
-const NativeString = require("./Data/Native/String");
+const Array = mrequire("core:Data.Array:1.0.0");
+const Maybe = mrequire("core:Data.Maybe:1.2.0");
+const NativeArray = mrequire("core:Data.Native.Array:1.2.0");
+const NativeString = mrequire("core:Data.Native.String:1.3.0");
 
 
 const newlineSplitter = NativeString.split(/\n/);

@@ -38,7 +38,7 @@ const constant = a => _ => a;
         },
         "signature": {
           "value": [
-            0,
+            1,
             "identity :: a -> a"
           ]
         },
@@ -57,7 +57,7 @@ const constant = a => _ => a;
         },
         "signature": {
           "value": [
-            0,
+            1,
             "constant :: a -> b -> a"
           ]
         },
